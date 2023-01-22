@@ -8,6 +8,6 @@ export default defineConfig({
   format: ['cjs', 'esm'],
   target: ['es6', 'node16'],
   shims: true,
-  treeshake: true,
+  treeshake: true
   // minify: true,
 })
