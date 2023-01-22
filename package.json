@@ -7,9 +7,13 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "go": "run-s format lint build test",
+    "format": "ts-standard --fix",
     "lint": "tsc && ts-standard",
-    "test": "jest"
+    "build": "tsup",
+    "test": "pnpm run build && jest",
+    "build:watch": "tsup --watch",
+    "test:watch": "pnpm run build:watch & jest --watchAll"
   },
   "pre-commit": [
     "pnpm run lint",
@@ -27,13 +31,20 @@
   "license": "ISC",
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
+    "@types/core-js": "^2.5.5",
+    "@types/glob": "^8.0.1",
     "@types/jest": "^29.2.6",
     "@types/node": "^18.11.18",
     "jest": "^29.3.1",
+    "npm-run-all": "^4.1.5",
     "pre-commit": "^1.2.2",
     "ts-jest": "^29.0.5",
     "ts-standard": "^12.0.2",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "core-js": "^3.27.2",
+    "glob": "^8.1.0"
   }
 }
